@@ -24,10 +24,16 @@ class Library {
         // Increment the book count and add book to the library of books
         library.bookCount += 1;
         library.books.push(book);
+        let table = document.getElementById("table");
+        let row = table.insertRow();
+        let cellTitle = row.insertCell();
+        let cellAuthor = row.insertCell();
+        cellTitle.innerText = book.title;
+        cellAuthor.innerText = book.author;
     }
 }
 
 // Construct an empty library with no books
 let library = new Library(0, []);
-library.addBook("Gulivers Travels", "Clemens", true);
-console.log(`Library Book Count = ${library.bookCount}\nLibrary Books Array Length = ${library.books.length}`);
+library.addBook("Gulivers Travels", "Clemens", false);
+console.log(`Library Book Count = ${library.bookCount}\nLibrary Books Array Length = ${library.books.length}\nLibrary Books Read = ${books.read}`);
