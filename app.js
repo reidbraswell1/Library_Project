@@ -3,6 +3,12 @@ console.log("Hello World!\n==========\n");
 // PROJECT Section
 console.log("PROJECT:\n==========\n");
 
+let checkboxNumber = 0;
+
+const scriptConstants = { 
+    inputElement:`<input type="checkbox" name="read" id="readLibraryCheckbox${checkboxNumber}" checked disabled />`
+}
+
 class Book {
     constructor(title, author, read) {
         this.title = title,
@@ -28,12 +34,14 @@ class Library {
         let row = table.insertRow();
         let cellTitle = row.insertCell();
         let cellAuthor = row.insertCell();
+        let cellRead = row.insertCell();
         cellTitle.innerText = book.title;
         cellAuthor.innerText = book.author;
+        cellRead.innerHTML = scriptConstants.inputElement;
     }
 }
 
 // Construct an empty library with no books
 let library = new Library(0, []);
 library.addBook("Gulivers Travels", "Clemens", false);
-console.log(`Library Book Count = ${library.bookCount}\nLibrary Books Array Length = ${library.books.length}\nLibrary Books Read = ${books.read}`);
+console.log(`Library Book Count = ${library.bookCount}\nLibrary Books Array Length = ${library.books.length}`);
