@@ -1,53 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Library Project</title>
-    <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
-    <main
-      style="
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Library Project</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <main style="
         display: flex;
         justify-content: center;
         align-items: center;
         text-align: center;
-      "
-    >
+      ">
+    <div>
       <div>
         <h1>Library Project</h1>
-        <div id="library">
-          <!-- Add table here -->
-          <table id="table" style="min-width: 680px; margin: 2rem">
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Title</th>
-                <th>Author</th>
-                <th>Read</th>
-              </tr>
-            </thead>
-            <tbody id="tbody">
-              <tr>
-                <td>7007</td>
-                <td>Name of the Wind</td>
-                <td>Patrick Rothfuss</td>
-                <td>
-                  <input
-                    type="checkbox"
-                    name="read"
-                    id="readLibraryCheckbox"
-                    checked
-                    disabled
-                  />
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-    </main>
+        <!-- Form Input -->
+        <form id="form" method="POST" action="javascript:controller(functionNumber.value, functionValue.value);"
+          onsubmit="return validateForm(functionNumber.value, functionValue.value)">
+          <h4>Exercise Entry Form</h4>
+          <label for="bookId">Book ID: </label>
+          <input type="number" name="bookId" id="bookId" min="1" max="9999" required>
+          <label for="bookTitle">Book Title:</label>
+          <input type="text" id="bookTitle" name="bookTitle" required>
+          <label for="bookAuthor">Book Author:</label>
+          <input type="text" id="bookAuthor" name="bookAuthor" required>
+          <label for="bookRead">Read Yes/No:</label>
+          <select name="bookRead" id="bookRead" required>
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+          </select>
+          <br>
+          <button type="submit" value="Submit">Submit</button>
+          <p id="error"></p>
+        </form>
+      </div>
+      <div id="library">
+        <!-- Add table here -->
+        <table id="table" style="min-width: 680px; margin: 2rem">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Title</th>
+              <th>Author</th>
+              <th>Read</th>
+            </tr>
+          </thead>
+          <tbody id="tbody">
+            <tr>
+              <td>7007</td>
+              <td>Name of the Wind</td>
+              <td>Patrick Rothfuss</td>
+              <td>
+                <input type="checkbox" name="read" id="readLibraryCheckbox" checked disabled />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
 
-    <script src="app.js"></script>
-  </body>
+  <script src="app.js"></script>
+</body>
+
 </html>
