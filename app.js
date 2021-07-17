@@ -13,7 +13,7 @@ const scriptConstants = {
 };
 
 // Book Class
-// Book is composed of an "id", "title", 
+// Book is composed of an "id", "title",
 // "author", and boolean flag "read" indicating
 // whether or not the book has been read
 class Book {
@@ -25,13 +25,14 @@ class Book {
   }
 }
 
-// Library Class
+// Library Class 
+// Library is composed of a "bookCount" and a "books" array
 class Library {
   constructor(bookCount, books) {
     (this.bookCount = bookCount), (this.books = books);
   }
 
-  // Method to mark a book as read or not. The checkbox 
+  // Method to mark a book as read or not. The checkbox
   // will be either true or false. The checkbox can be
   // checked or unchecked if the id matches
   markRead(checkbox, bookId) {
@@ -59,6 +60,7 @@ class Library {
 
   // Add a book to the library
   // Method of the library class to add a book to the library object
+  // The HTML table will also be updated with the book being added.
   addBook(bookId, bookTitle, bookAuthor, bookRead) {
     console.log("--Library.addBook--");
     console.log(
@@ -104,6 +106,7 @@ class Library {
 
 // Construct an empty library with no books
 let library = new Library(0, []);
+// Add some dummy books to the library
 library.addBook(7007, "Name of the Wind", "Patrick Rothfuss", "true");
 library.addBook(8009, "Gulivers Travels", "Clemens", "false");
 console.log("--root--");
@@ -111,6 +114,9 @@ console.log(
   `Library Book Count = ${library.bookCount}\nLibrary Books Array Length = ${library.books.length}`
 );
 
+// Action function called from the HTML formBookEntry
+// This controller function will call the library method addBook to
+// add a book to the library and reset the form.
 function bookEntryController(bookId, bookTitle, bookAuthor, bookRead) {
   console.log("--bookEntryController--");
   console.log(
@@ -118,14 +124,19 @@ function bookEntryController(bookId, bookTitle, bookAuthor, bookRead) {
   );
   library.addBook(bookId, bookTitle, bookAuthor, bookRead);
   let formBookEntry = document.getElementById(scriptConstants.formBookEntry);
-  if(formBookEntry == null) {
-      console.log("---Error bookEntryController unable to get formBookEntry element--");
-  }
-  else{
-      formBookEntry.reset();
+  if (formBookEntry == null) {
+    console.log(
+      "---Error bookEntryController unable to get formBookEntry element--"
+    );
+  } else {
+    formBookEntry.reset();
   }
 }
 
+// Action function called from the HTML formBookRead
+// This controller function will call the library method markRead
+// and check or uncheck the input check box in the HTML table if
+// the id of the book matches the supplied bookId.
 function bookMarkController(bookId, bookRead) {
   console.log("--bookMarkController--");
   console.log(`Book Id = ${bookId}\nBook Read = ${bookRead}\n`);
@@ -140,42 +151,64 @@ function bookMarkController(bookId, bookRead) {
   }
 }
 
+// Helper function called to generate an input checkbox element.
+// The id will vary depending on the "count" passed into the function.
+// This will allow all of the newly generated elements to be obtained
+// and updated.
 function generateInputElement(count) {
   return `<input type="checkbox" name="read" id="readLibraryCheckbox-${count}" disabled />`;
 }
 
+// Function called by the formBookEntry on submit attribute.
+// The function will check to see if the "bookId" has already
+// been used before allowing a user to enter a book. An error 
+// will be generated if the "bookId" is found.
 function validateBookEntryForm(bookId) {
   console.log("--validateBookEntryForm--");
   console.log(`Book Id = ${bookId}\n`);
   let error = document.getElementById("errorBookEntry");
   if (error == null) {
     console.log("--Error validateBookEntryForm unable to get error element--");
+    return false;
   } else {
     error.innerText = "";
     let found = validateBookID(bookId * 1);
     if (found) {
       error.innerText = "This ID is in use please select another ID";
       error.style.color = "red";
+      return false;
     }
   }
+  return true;
 }
 
+// Function called by the formBookRead on submit attribute.
+// The function will check to see if the "bookId" is found
+// in the libray books array before allowing a user to change
+// the checked or unchecked status of the "read" checkbox.
+// returns true if the "bookId" is found in the books array.
 function validateBookMarkForm(bookId) {
   console.log("--validateBookMarkForm--");
   console.log(`Book Id = ${bookId}`);
   let error = document.getElementById("errorBookMark");
   if (error == null) {
     console.log("--Error validateBookMarkForm unable to get error element--");
+    return false;
   } else {
     error.innerText = "";
     let found = validateBookID(bookId * 1);
     if (!found) {
       error.innerText = "This Id was not found - please enter a valid book Id";
       error.style.color = "red";
+      return false;
     }
   }
+  return true;
 }
 
+// Helper function to check and see if the supplied
+// "bookId" is found in the library books array.
+// returns true if the "bookId" is found in the books array.
 function validateBookID(bookId) {
   console.log("--validateBookID--");
   console.log(`Book Id = ${bookId}`);
