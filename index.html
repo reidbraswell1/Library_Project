@@ -19,7 +19,7 @@
       <div>
         <h1>Library Project</h1>
         <!-- Form Input -->
-        <form id="form" method="POST" action="javascript:controller();" onsubmit="return validateBookEntryForm(bookId.value)">
+        <form id="form" method="POST" action="javascript:bookEntryController(bookId.value, bookTitle.value, bookAuthor.value, bookRead.value);" onsubmit="return validateBookEntryForm(bookId.value)">
           <h4>Book Entry Form</h4>
           <label for="bookId">Book ID: </label>
           <input type="number" name="bookId" id="bookId" min="1" max="9999" required>
