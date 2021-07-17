@@ -62,3 +62,7 @@ let library = new Library(0, []);
 library.addBook(8009, "Gulivers Travels", "Clemens", false);
 library.markRead(false, 8009);
 console.log(`Library Book Count = ${library.bookCount}\nLibrary Books Array Length = ${library.books.length}`);
+
+function validateForm() {
+    alert("here");
+}
