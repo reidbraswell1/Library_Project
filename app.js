@@ -3,6 +3,7 @@ console.log("Hello World!\n==========\n");
 // PROJECT Section
 console.log("PROJECT:\n==========\n");
 
+// Constants used in script
 const scriptConstants = {
   tableId: "table",
   tbodyID: "tbody",
@@ -11,6 +12,10 @@ const scriptConstants = {
   formBookRead: "formBookRead",
 };
 
+// Book Class
+// Book is composed of an "id", "title", 
+// "author", and boolean flag "read" indicating
+// whether or not the book has been read
 class Book {
   constructor(id, title, author, read) {
     (this.id = id),
@@ -19,11 +24,15 @@ class Book {
       (this.read = read);
   }
 }
+
+// Library Class
 class Library {
   constructor(bookCount, books) {
     (this.bookCount = bookCount), (this.books = books);
   }
-  // checkbox will be either true or false. The checkbox can be turned
+
+  // Method to mark a book as read or not. The checkbox 
+  // will be either true or false. The checkbox can be
   // checked or unchecked if the id matches
   markRead(checkbox, bookId) {
     console.log("--Library.markRead--");
@@ -49,6 +58,7 @@ class Library {
   }
 
   // Add a book to the library
+  // Method of the library class to add a book to the library object
   addBook(bookId, bookTitle, bookAuthor, bookRead) {
     console.log("--Library.addBook--");
     console.log(
@@ -96,7 +106,6 @@ class Library {
 let library = new Library(0, []);
 library.addBook(7007, "Name of the Wind", "Patrick Rothfuss", "true");
 library.addBook(8009, "Gulivers Travels", "Clemens", "false");
-library.markRead(false, 8009);
 console.log("--root--");
 console.log(
   `Library Book Count = ${library.bookCount}\nLibrary Books Array Length = ${library.books.length}`
