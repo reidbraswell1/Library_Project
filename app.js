@@ -63,6 +63,11 @@ library.addBook(8009, "Gulivers Travels", "Clemens", false);
 library.markRead(false, 8009);
 console.log(`Library Book Count = ${library.bookCount}\nLibrary Books Array Length = ${library.books.length}`);
 
+function bookEntryController(bookId, bookTitle, bookAuthor, bookRead) {
+    console.log("Book Entry Controller");
+    console.log(`Book Id = ${bookId}\nBook Title = ${bookTitle}\nBook Author = ${bookAuthor}\nBook Read = ${bookRead}\n`);
+}
+
 function validateBookEntryForm(bookID) {
     alert("Book Entry Form");
     let error = document.getElementById("errorBookEntry");
