@@ -33,7 +33,7 @@ button[type="submit"] {
 }
 
 /* Align the 3rd column to the center */
-#table tr td:nth-child(3) { 
+#table tr td:nth-child(4) { 
    text-align: center;
 }
 
