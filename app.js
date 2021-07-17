@@ -108,14 +108,27 @@ function bookEntryController(bookId, bookTitle, bookAuthor, bookRead) {
     `Book Id = ${bookId}\nBook Title = ${bookTitle}\nBook Author = ${bookAuthor}\nBook Read = ${bookRead}\n`
   );
   library.addBook(bookId, bookTitle, bookAuthor, bookRead);
-  document.getElementById(scriptConstants.formBookEntry).reset();
+  let formBookEntry = document.getElementById(scriptConstants.formBookEntry);
+  if(formBookEntry == null) {
+      console.log("---Error bookEntryController unable to get formBookEntry element--");
+  }
+  else{
+      formBookEntry.reset();
+  }
 }
 
 function bookMarkController(bookId, bookRead) {
   console.log("--bookMarkController--");
   console.log(`Book Id = ${bookId}\nBook Read = ${bookRead}\n`);
   library.markRead(bookRead, bookId);
-  document.getElementById(scriptConstants.formBookRead).reset();
+  let formBookRead = document.getElementById(scriptConstants.formBookRead);
+  if (formBookRead == null) {
+    console.log(
+      "--Error bookMarkController unable to get formBookRead element---"
+    );
+  } else {
+    formBookRead.reset();
+  }
 }
 
 function generateInputElement(count) {
