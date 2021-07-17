@@ -19,7 +19,7 @@
       <div>
         <h1>Library Project</h1>
         <!-- Form Input -->
-        <form id="form" method="POST" action="javascript:controller();" onsubmit="return validateForm()">
+        <form id="form" method="POST" action="javascript:controller();" onsubmit="return validateBookEntryForm(bookId.value)">
           <h4>Book Entry Form</h4>
           <label for="bookId">Book ID: </label>
           <input type="number" name="bookId" id="bookId" min="1" max="9999" required>
@@ -34,11 +34,11 @@
           </select>
           <br>
           <button type="submit" value="Submit">Submit</button>
-          <p id="error"></p>
+          <p id="errorBookEntry"></p>
         </form>
         <br>
         <!-- Form Input -->
-        <form id="form" method="POST" action="javascript:controller();" onsubmit="return validateForm()">
+        <form id="form" method="POST" action="javascript:controller();" onsubmit="return validateBookMarkForm()">
           <h4>Book Mark Read Form</h4>
           <label for="bookId">Book ID: </label>
           <input type="number" name="bookId" id="bookId" min="1" max="9999" required>
@@ -49,7 +49,7 @@
           </select>
           <br>
           <button type="submit" value="Submit">Submit</button>
-          <p id="error"></p>
+          <p id="errorBookMark"></p>
         </form>
       </div>
       <div id="library">
