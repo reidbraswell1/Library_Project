@@ -30,7 +30,7 @@ class Library {
     markRead(checkbox, id) {
         for (let i = 0; i < this.books.length; i++) {
             if (this.books[i].id == id) {
-                let checkboxElement = document.getElementById(`${checkboxPrefix}${i}`);
+                let checkboxElement = document.getElementById(`${scriptConstants.checkboxPrefix}${i}`);
                 checkboxElement.checked = checkbox;
             }
         }
@@ -63,6 +63,34 @@ library.addBook(8009, "Gulivers Travels", "Clemens", false);
 library.markRead(false, 8009);
 console.log(`Library Book Count = ${library.bookCount}\nLibrary Books Array Length = ${library.books.length}`);
 
-function validateForm() {
-    alert("here");
+function validateBookEntryForm(bookID) {
+    alert("Book Entry Form");
+    let error = document.getElementById("errorBookEntry");
+    error.innerText = "";
+    let found = validateBookID(bookID * 1);
+    if (found) {
+        error.innerText = "This ID is in use please select another ID";
+        error.style.color = "red";
+    }
+}
+
+function validateBookMarkForm(bookID) {
+    alert("Book Mark Form");
+    let error = document.getElementById("errorBookEntry");
+    error.innerText = "";
+    let found = validateBookID(bookID * 1);
+    if (found) {
+        error.innerText = "This ID is in use please select another";
+        error.style.color = "red";
+    }
+}
+
+function validateBookID(bookID) {
+    let found = false;
+    for (let i = 0; i < library.books.length; i++) {
+        if (library.books[i].id == bookID) {
+            found = true;
+        }
+    }
+    return found;
 }
