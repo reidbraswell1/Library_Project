@@ -19,16 +19,16 @@
       <div>
         <h1>Library Project</h1>
         <!-- Form Input -->
-        <form id="form" method="POST" action="javascript:bookEntryController(bookId.value, bookTitle.value, bookAuthor.value, bookRead.value);" onsubmit="return validateBookEntryForm(bookId.value)">
+        <form id="formBookEntry" method="POST" action="javascript:bookEntryController(bookId1.value, bookTitle.value, bookAuthor.value, bookRead1.value);" onsubmit="return validateBookEntryForm(bookId1.value)">
           <h4>Book Entry Form</h4>
           <label for="bookId">Book ID: </label>
-          <input type="number" name="bookId" id="bookId" min="1" max="9999" required>
+          <input type="number" name="bookId" id="bookId1" min="1" max="9999" required>
           <label for="bookTitle">Book Title:</label>
           <input type="text" id="bookTitle" name="bookTitle" required>
           <label for="bookAuthor">Book Author:</label>
           <input type="text" id="bookAuthor" name="bookAuthor" required>
           <label for="bookRead">Read Yes/No:</label>
-          <select name="bookRead" id="bookRead" required>
+          <select name="bookRead1" id="bookRead1" required>
             <option value="true">Yes</option>
             <option value="false" selected>No</option>
           </select>
@@ -38,12 +38,12 @@
         </form>
         <br>
         <!-- Form Input -->
-        <form id="form" method="POST" action="javascript:controller();" onsubmit="return validateBookMarkForm()">
+        <form id="formBookRead" method="POST" action="javascript:bookMarkController(bookId2.value, bookRead2.value);" onsubmit="return validateBookMarkForm(bookId2.value)">
           <h4>Book Mark Read Form</h4>
           <label for="bookId">Book ID: </label>
-          <input type="number" name="bookId" id="bookId" min="1" max="9999" required>
+          <input type="number" name="bookId" id="bookId2" min="1" max="9999" required>
           <label for="bookRead">Read Yes/No:</label>
-          <select name="bookRead" id="bookRead" required value="false">
+          <select name="bookRead" id="bookRead2" required value="false">
             <option value="true">Yes</option>
             <option value="false" selected>No</option>
           </select>
@@ -64,14 +64,6 @@
             </tr>
           </thead>
           <tbody id="tbody">
-            <tr>
-              <td>7007</td>
-              <td>Name of the Wind</td>
-              <td>Patrick Rothfuss</td>
-              <td>
-                <input type="checkbox" name="read" id="readLibraryCheckbox" checked disabled />
-              </td>
-            </tr>
           </tbody>
         </table>
       </div>
