@@ -39,40 +39,46 @@
           <p id="errorBookEntry"></p>
         </form>
         <br>
-        <!-- Form Input -->
-        <form id="formBookRead" method="POST" action="javascript:bookMarkController(bookId2.value, bookRead2.value);"
-          onsubmit="return validateBookMarkForm(bookId2.value)">
-          <h4>Book Read Form</h4>
-          <label for="bookId">Book ID: </label>
-          <input type="number" name="bookId" id="bookId2" min="1" max="9999" required>
-          <label for="bookRead">Read Yes/No:</label>
-          <select name="bookRead" id="bookRead2" required value="false">
-            <option value="true">Yes</option>
-            <option value="false" selected>No</option>
-          </select>
+        <div id="readDeleteForms">
+          <!-- Form Input -->
+          <form id="formBookRead" method="POST" action="javascript:bookMarkController(bookId2.value, bookRead2.value);"
+            onsubmit="return validateBookMarkForm(bookId2.value)">
+            <h4>Book Read Form</h4>
+            <label for="bookId">Book ID: </label>
+            <input type="number" name="bookId" id="bookId2" min="1" max="9999" required>
+            <label for="bookRead">Read Yes/No:</label>
+            <select name="bookRead" id="bookRead2" required value="false">
+              <option value="true">Yes</option>
+              <option value="false" selected>No</option>
+            </select>
+            <br>
+            <button type="submit" value="Submit">Submit</button>
+            <p id="errorBookMark"></p>
+          </form>
           <br>
-          <button type="submit" value="Submit">Submit</button>
-          <p id="errorBookMark"></p>
-        </form>
-        <br>
-        <!-- Form Input -->
-        <form id="formBookDelete" method="POST" action="javascript:bookDeleteController(bookId3.value, bookRead3.value);"
-          onsubmit="return validateBookDeleteForm(bookId3.value)">
-          <h4>Book Delete Form</h4>
-          <label for="bookId">Book ID: </label>
-          <input type="number" name="bookId" id="bookId3" min="1" max="9999" required>
-          <label for="bookDelete">Delete Yes/No:</label>
-          <select name="bookDelete" id="bookRead3" required value="false">
-            <option value="true">Yes</option>
-            <option value="false" selected>No</option>
-          </select>
-          <br>
-          <button type="submit" value="Submit">Submit</button>
-          <p id="errorBookDelete"></p>
-        </form>
+          <!-- Form Input -->
+          <form id="formBookDelete" method="POST"
+            action="javascript:bookDeleteController(bookId3.value, bookRead3.value);"
+            onsubmit="return validateBookDeleteForm(bookId3.value)">
+            <h4>Book Delete Form</h4>
+            <label for="bookId">Book ID: </label>
+            <input type="number" name="bookId" id="bookId3" min="1" max="9999" required>
+            <label for="bookDelete">Delete Yes/No:</label>
+            <select name="bookDelete" id="bookRead3" required value="false">
+              <option value="true">Yes</option>
+              <option value="false" selected>No</option>
+            </select>
+            <br>
+            <button type="submit" value="Submit">Submit</button>
+            <p id="errorBookDelete"></p>
+          </form>
+        </div>
+        <div>
+          <p id="booksInLibrary"></p>
+        </div>
       </div>
       <div>
-        <p id="booksInLibrary"></p>
+        <h3>Library Contents</h3>
       </div>
       <div id="library">
         <!-- Add table here -->
