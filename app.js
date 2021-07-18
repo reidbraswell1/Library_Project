@@ -5,6 +5,7 @@ console.log("PROJECT:\n==========\n");
 
 // Constants used in script
 const scriptConstants = {
+  bookCountId: "booksInLibrary",
   tableId: "table",
   tbodyID: "tbody",
   checkboxPrefix: "readLibraryCheckbox-",
@@ -74,6 +75,8 @@ class Library {
     }
     // Increment the book count and add book to the library of books
     library.bookCount += 1;
+    let booksInLibrary = document.getElementById(scriptConstants.bookCountId);
+    booksInLibrary.innerText = `Books in the library = ${library.bookCount}`;
     library.books.push(book);
     let tbody = document.getElementById(scriptConstants.tbodyID);
     if (tbody == null) {
