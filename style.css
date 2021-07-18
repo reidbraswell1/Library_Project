@@ -1,3 +1,7 @@
+#booksInLibrary {
+    font-size: 1.4em;;
+}
+
 form {
     border: 1px solid black;
     width: 40%;
@@ -14,6 +18,20 @@ label {
 
 button[type="submit"] {
     margin-top: 10px;
+}
+
+#library {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+/* Display 2 forms in a row */
+#readDeleteForms {
+    display: flex; 
+    flex-direction: row;
+    flex: 1;
 }
 
 #table {
