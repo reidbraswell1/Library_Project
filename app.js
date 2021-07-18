@@ -74,10 +74,10 @@ class Library {
       book = new Book(bookId, bookTitle, bookAuthor, false);
     }
     // Increment the book count and add book to the library of books
-    library.bookCount += 1;
+    this.bookCount += 1;
     let booksInLibrary = document.getElementById(scriptConstants.bookCountId);
     booksInLibrary.innerText = `Books in the library = ${library.bookCount}`;
-    library.books.push(book);
+    this.books.push(book);
     let tbody = document.getElementById(scriptConstants.tbodyID);
     if (tbody == null) {
       console.log("--Error addBook unable to get body element--");
