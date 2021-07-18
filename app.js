@@ -26,7 +26,7 @@ class Book {
   }
 }
 
-// Library Class 
+// Library Class
 // Library is composed of a "bookCount" and a "books" array
 class Library {
   constructor(bookCount, books) {
@@ -42,7 +42,7 @@ class Library {
     for (let i = 0; i < this.books.length; i++) {
       if (this.books[i].id == bookId) {
         let checkboxElement = document.getElementById(
-          `${scriptConstants.checkboxPrefix}${i + 1}`
+          `${scriptConstants.checkboxPrefix}${bookId}`
         );
         if (checkboxElement == null) {
           console.log(
@@ -83,6 +83,7 @@ class Library {
       console.log("--Error addBook unable to get body element--");
     } else {
       let row = tbody.insertRow();
+      row.id = bookId;
       let cellId = row.insertCell();
       let cellTitle = row.insertCell();
       let cellAuthor = row.insertCell();
@@ -90,9 +91,9 @@ class Library {
       cellId.innerText = book.id;
       cellTitle.innerText = book.title;
       cellAuthor.innerText = book.author;
-      cellRead.innerHTML = generateInputElement(library.books.length);
+      cellRead.innerHTML = generateInputElement(bookId, book.read);
       let bookReadCell = document.getElementById(
-        `${scriptConstants.checkboxPrefix}${library.books.length}`
+        `${scriptConstants.checkboxPrefix}${bookId}`
       );
       if (bookReadCell == null) {
         console.log("--Error addBook unable to get bookReadCell element");
@@ -102,6 +103,25 @@ class Library {
         } else {
           bookReadCell.checked = false;
         }
+      }
+    }
+  }
+
+  deleteBook(bookId) {
+    console.log("--Library.deleteBook--");
+    console.log(`Book Id = ${bookId}`);
+
+    for (let i = 0; i < this.books.length; i++) {
+      if (this.books[i].id == bookId) {
+        // Remove the element
+        this.books.splice(i, 1);
+        // Now remove the table entry from the html table
+        let rowToRemove = document.getElementById(`${bookId}`);
+        rowToRemove.remove();
+        // Decrement the books in the library
+        this.bookCount -= 1;
+        let booksInLibrary = document.getElementById(scriptConstants.bookCountId);
+        booksInLibrary.innerText = `Books in the library = ${this.bookCount}`;
       }
     }
   }
@@ -140,6 +160,26 @@ function bookEntryController(bookId, bookTitle, bookAuthor, bookRead) {
 // This controller function will call the library method markRead
 // and check or uncheck the input check box in the HTML table if
 // the id of the book matches the supplied bookId.
+function bookDeleteController(bookId, bookDelete) {
+  console.log("--bookDeleteController--");
+  console.log(`Book Id = ${bookId}`);
+  if (bookDelete == "true") {
+    library.deleteBook(bookId);
+  }
+  let formBookRead = document.getElementById(scriptConstants.formBookRead);
+  if (formBookRead == null) {
+    console.log(
+      "--Error bookMarkController unable to get formBookRead element---"
+    );
+  } else {
+    formBookRead.reset();
+  }
+}
+
+// Action function called from the HTML formBookRead
+// This controller function will call the library method markRead
+// and check or uncheck the input check box in the HTML table if
+// the id of the book matches the supplied bookId.
 function bookMarkController(bookId, bookRead) {
   console.log("--bookMarkController--");
   console.log(`Book Id = ${bookId}\nBook Read = ${bookRead}\n`);
@@ -158,13 +198,17 @@ function bookMarkController(bookId, bookRead) {
 // The id will vary depending on the "count" passed into the function.
 // This will allow all of the newly generated elements to be obtained
 // and updated.
-function generateInputElement(count) {
-  return `<input type="checkbox" name="read" id="readLibraryCheckbox-${count}" disabled />`;
+function generateInputElement(bookId, checked) {
+  if (checked) {
+    return `<input type="checkbox" name="read" id="readLibraryCheckbox-${bookId}" checked disabled />`;
+  } else {
+    return `<input type="checkbox" name="read" id="readLibraryCheckbox-${bookId}" disabled />`;
+  }
 }
 
 // Function called by the formBookEntry on submit attribute.
 // The function will check to see if the "bookId" has already
-// been used before allowing a user to enter a book. An error 
+// been used before allowing a user to enter a book. An error
 // will be generated if the "bookId" is found.
 function validateBookEntryForm(bookId) {
   console.log("--validateBookEntryForm--");
@@ -178,6 +222,30 @@ function validateBookEntryForm(bookId) {
     let found = validateBookID(bookId * 1);
     if (found) {
       error.innerText = "This ID is in use please select another ID";
+      error.style.color = "red";
+      return false;
+    }
+  }
+  return true;
+}
+
+// Function called by the formBookRead on submit attribute.
+// The function will check to see if the "bookId" is found
+// in the libray books array before allowing a user to change
+// the checked or unchecked status of the "read" checkbox.
+// returns true if the "bookId" is found in the books array.
+function validateBookDeleteForm(bookId) {
+  console.log("--validateBookDeleteForm--");
+  console.log(`Book Id = ${bookId}`);
+  let error = document.getElementById("errorBookDelete");
+  if (error == null) {
+    console.log("--Error validateBookDeleteForm unable to get error element--");
+    return false;
+  } else {
+    error.innerText = "";
+    let found = validateBookID(bookId * 1);
+    if (!found) {
+      error.innerText = "This Id was not found - please enter a valid book Id";
       error.style.color = "red";
       return false;
     }
