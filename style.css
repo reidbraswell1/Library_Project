@@ -50,7 +50,7 @@ button[type="submit"] {
     text-align: left;
 }
 
-/* Align the 3rd column to the center */
+/* Align the 4th column to the center */
 #table tr td:nth-child(4) { 
    text-align: center;
 }
