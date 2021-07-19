@@ -33,32 +33,6 @@ class Library {
     (this.bookCount = bookCount), (this.books = books);
   }
 
-  // Method to mark a book as read or not. The checkbox
-  // will be either true or false. The checkbox can be
-  // checked or unchecked if the id matches
-  markRead(checkbox, bookId) {
-    console.log("--Library.markRead--");
-    console.log(`Check Box = ${checkbox}\nBook Id = ${bookId}`);
-    for (let i = 0; i < this.books.length; i++) {
-      if (this.books[i].id == bookId) {
-        let checkboxElement = document.getElementById(
-          `${scriptConstants.checkboxPrefix}${bookId}`
-        );
-        if (checkboxElement == null) {
-          console.log(
-            "--Error Library.markRead unable to get checkboxElement--"
-          );
-        } else {
-          if (checkbox === "true") {
-            checkboxElement.checked = true;
-          } else {
-            checkboxElement.checked = false;
-          }
-        }
-      }
-    }
-  }
-
   // Add a book to the library
   // Method of the library class to add a book to the library object
   // The HTML table will also be updated with the book being added.
@@ -107,6 +81,9 @@ class Library {
     }
   }
 
+  // Deete a book from the library
+  // Method of the library class to delete a book from the library object
+  // The HTML table will also be updated with the book being deleted.
   deleteBook(bookId) {
     console.log("--Library.deleteBook--");
     console.log(`Book Id = ${bookId}`);
@@ -125,6 +102,33 @@ class Library {
       }
     }
   }
+
+  // Method to mark a book as read or not. The checkbox
+  // will be either true or false. The checkbox can be
+  // checked or unchecked if the id matches
+  markRead(checkbox, bookId) {
+    console.log("--Library.markRead--");
+    console.log(`Check Box = ${checkbox}\nBook Id = ${bookId}`);
+    for (let i = 0; i < this.books.length; i++) {
+      if (this.books[i].id == bookId) {
+        let checkboxElement = document.getElementById(
+          `${scriptConstants.checkboxPrefix}${bookId}`
+        );
+        if (checkboxElement == null) {
+          console.log(
+            "--Error Library.markRead unable to get checkboxElement--"
+          );
+        } else {
+          if (checkbox === "true") {
+            checkboxElement.checked = true;
+          } else {
+            checkboxElement.checked = false;
+          }
+        }
+      }
+    }
+  }
+
 }
 
 // Construct an empty library with no books
@@ -157,9 +161,7 @@ function bookEntryController(bookId, bookTitle, bookAuthor, bookRead) {
 }
 
 // Action function called from the HTML formBookRead
-// This controller function will call the library method markRead
-// and check or uncheck the input check box in the HTML table if
-// the id of the book matches the supplied bookId.
+// This controller function will call the library method deleteBook
 function bookDeleteController(bookId, bookDelete) {
   console.log("--bookDeleteController--");
   console.log(`Book Id = ${bookId}`);
@@ -229,11 +231,10 @@ function validateBookEntryForm(bookId) {
   return true;
 }
 
-// Function called by the formBookRead on submit attribute.
+// Function called by the formBookDelete on submit attribute.
 // The function will check to see if the "bookId" is found
-// in the libray books array before allowing a user to change
-// the checked or unchecked status of the "read" checkbox.
-// returns true if the "bookId" is found in the books array.
+// in the libray books array before allowing a user to delete
+// a book. Returns true if the "bookId" is found in the books array.
 function validateBookDeleteForm(bookId) {
   console.log("--validateBookDeleteForm--");
   console.log(`Book Id = ${bookId}`);
