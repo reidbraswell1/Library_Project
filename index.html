@@ -18,7 +18,7 @@
     <div>
       <div>
         <h1>Library Project</h1>
-        <!-- Form Input -->
+        <!-- Form Book Entry -->
         <form id="formBookEntry" method="POST"
           action="javascript:bookEntryController(bookId1.value, bookTitle.value, bookAuthor.value, bookRead1.value);"
           onsubmit="return validateBookEntryForm(bookId1.value)">
@@ -40,7 +40,7 @@
         </form>
         <br>
         <div id="readDeleteForms">
-          <!-- Form Input -->
+          <!-- Form Book Read -->
           <form id="formBookRead" method="POST" action="javascript:bookMarkController(bookId2.value, bookRead2.value);"
             onsubmit="return validateBookMarkForm(bookId2.value)">
             <h4>Book Read Form</h4>
@@ -56,7 +56,7 @@
             <p id="errorBookMark"></p>
           </form>
           <br>
-          <!-- Form Input -->
+          <!-- Form Book Delete -->
           <form id="formBookDelete" method="POST"
             action="javascript:bookDeleteController(bookId3.value, bookRead3.value);"
             onsubmit="return validateBookDeleteForm(bookId3.value)">
