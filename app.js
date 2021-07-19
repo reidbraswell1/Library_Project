@@ -11,6 +11,7 @@ const scriptConstants = {
   checkboxPrefix: "readLibraryCheckbox-",
   formBookEntry: "formBookEntry",
   formBookRead: "formBookRead",
+  formBookDelete: "formBookDelete",
 };
 
 // Book Class
@@ -134,6 +135,7 @@ class Library {
 // Construct an empty library with no books
 let library = new Library(0, []);
 // Add some dummy books to the library
+console.log("--root-- Adding dummy starting library books");
 library.addBook(7007, "Name of the Wind", "Patrick Rothfuss", "true");
 library.addBook(8009, "Gulivers Travels", "Clemens", "false");
 console.log("--root--");
@@ -160,7 +162,7 @@ function bookEntryController(bookId, bookTitle, bookAuthor, bookRead) {
   }
 }
 
-// Action function called from the HTML formBookRead
+// Action function called from the HTML formBookDelete
 // This controller function will call the library method deleteBook
 function bookDeleteController(bookId, bookDelete) {
   console.log("--bookDeleteController--");
@@ -168,13 +170,13 @@ function bookDeleteController(bookId, bookDelete) {
   if (bookDelete == "true") {
     library.deleteBook(bookId);
   }
-  let formBookRead = document.getElementById(scriptConstants.formBookRead);
-  if (formBookRead == null) {
+  let formBookDelete = document.getElementById(scriptConstants.formBookDelete);
+  if (formBookDelete == null) {
     console.log(
-      "--Error bookMarkController unable to get formBookRead element---"
+      "--Error bookDeleteController unable to get formBookRead element---"
     );
   } else {
-    formBookRead.reset();
+    formBookDelete.reset();
   }
 }
 
